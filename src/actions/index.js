@@ -18,6 +18,13 @@ const wordsError = (error) => {
   }
 };
 
+const updateWords = (words) => {
+  return {
+    type: 'ADD_NEW_WORDS',
+    payload: words
+  }
+};
+
 const fetchWords = (wordstoreService, dispatch) => () => {
   dispatch(wordsRequested());
   wordstoreService.getWords()
@@ -27,5 +34,6 @@ const fetchWords = (wordstoreService, dispatch) => () => {
 
 export {
   wordsRequested,
-  fetchWords
+  fetchWords,
+  updateWords
 };
