@@ -5,7 +5,7 @@ const WordList = ({ words }) => {
 
   const wordItems = words.map(({ id, titleEn, titleRu }) => {
     return (
-      <WordsItem id={ id } word={ titleEn } wordTranslate={ titleRu }/>
+      <WordsItem key={ id } id={ id } word={ titleEn } wordTranslate={ titleRu }/>
     );
   });
 

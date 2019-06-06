@@ -10,7 +10,7 @@ export default class ApiService {
   getWords() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (Math.random() > 0.99) {
+        if (Math.random() > 0.9) {
           reject('Ошибка получения данных')
         } else {
           resolve(this.data)
