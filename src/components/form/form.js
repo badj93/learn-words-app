@@ -7,23 +7,51 @@ import { updateWords } from '../../actions'
 class Form extends Component {
 
   state = {
-    wordRu: null,
-    wordEn: null
+    wordRu: {
+      validation: {
+        required: true
+      },
+      label: 'Добавить слово в базу на русском',
+      value: ''
+    },
+    wordEn: {
+      validation: {
+        required: true
+      },
+      label: 'Добавить слово в базу на английском',
+      value: ''
+    }
   };
 
   addWord = (e) => {
     e.preventDefault();
-    if (this.state.wordEn !== '' && this.state.wordRu !== '') {
-      this.props.addWordList(this.state.wordRu, this.state.wordEn);
+    if (this.state.wordEn.value !== '' && this.state.wordRu.value !== '') {
+      this.props.addWordList(this.state.wordRu.value, this.state.wordEn.value);
     }
   };
 
-  onChangeRu = (e) => {
-    this.setState({ wordRu: e.target.value })
+  onChangeRu = (data) => {
+    const newWord = {
+      ...this.state.wordRu,
+      value: data.word
+    };
+    this.setState({ wordRu: newWord })
   };
 
-  onChangeEn = (e) => {
-    this.setState({ wordEn: e.target.value })
+  onChangeEn = (data) => {
+    const newWord = {
+      ...this.state.wordEn,
+      value: data.word
+    };
+    this.setState({ wordEn: newWord })
+  };
+
+  onChange = (word) => {
+    if (word.lang === 'en') {
+      this.onChangeEn(word);
+    } else {
+      this.onChangeRu(word);
+    }
   };
 
   render() {
@@ -32,20 +60,22 @@ class Form extends Component {
         <div className="row justify-content-md-center">
           <form>
             <InputWords
-              labelText="Добавить слово в базу на английском"
               placeholder="Введите слово"
               descInput="Можно ввести слово/словосочетание/предложение"
               idName="input1"
               classTitle="form-control"
-              onChange={ this.onChangeRu }
+              lang="ru"
+              onChange={ this.onChange }
+              value={ this.state.wordRu }
             />
             <InputWords
-              labelText="Введите перевод слова на русском"
               placeholder="Введите перевод"
               descInput="Перевод можно вводить через запятую"
               idName="input2"
               classTitle="form-control"
-              onChange={ this.onChangeEn }
+              lang="en"
+              onChange={ this.onChange }
+              value={ this.state.wordEn }
             />
             <Button
               classTitle="btn btn-primary"

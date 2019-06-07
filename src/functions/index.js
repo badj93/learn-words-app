@@ -5,7 +5,6 @@ const addNewWords = (state, { wordEn, wordRu }) => {
     titleEn: wordEn,
     titleRu: wordRu
   };
-  console.log(newWord)
   return [
     ...state,
     newWord
