@@ -1,3 +1,5 @@
+import * as functions from '../functions'
+
 const initialState = {
   words: [],
   error: null,
@@ -31,13 +33,10 @@ const reducer = (state = initialState, action) => {
       };
 
     case "ADD_NEW_WORDS":
-      console.log(action.payload)
       return {
-        ...state,
-        words: [],
+        words: functions.addNewWords(state.words, action.payload),
         error: null,
         loading: false,
-        wordItems: action.payload,
       };
 
     default:

@@ -61,7 +61,7 @@ class Form extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addWordList: (wordRu, wordEn) => dispatch(updateWords({ wordRu, wordEn }))
+    addWordList: (wordEn, wordRu) => dispatch(updateWords({ wordEn, wordRu }))
   }
 };
 
